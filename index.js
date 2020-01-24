@@ -1,5 +1,6 @@
 import http from 'http';
 import { parse } from 'url';
+import { parseQuery } from './queryParser.js';
 
 const server = http.createServer();
 const blockAddresses = [];
@@ -17,11 +18,12 @@ server.on('request', (req, res) => {
   assertAttack(address);
   addLog(address);
 
-  const parsedURL = parse(url);
+  const { pathname, query } = parse(url);
+  const parsedQuery = parseQuery(query || '');
 
   let content = '';
 
-  switch (parsedURL.pathname) {
+  switch (pathname) {
     case '/':
       const { avgTime, count } = conLogs.get(address);
       content = `time : ${avgTime} // count: ${count} // isAttack : ${assertAttack(
@@ -34,6 +36,8 @@ server.on('request', (req, res) => {
     default:
       content = 'unknown path';
   }
+
+  content += `\nParsed Query : ${parsedQuery}`;
 
   res.end(content);
 });
@@ -68,6 +72,6 @@ const makeLog = address => {
   };
 };
 
-server.listen(3000, () => {
+server.listen(3001, () => {
   console.log('now listen');
 });
