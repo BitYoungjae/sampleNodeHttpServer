@@ -1,0 +1,21 @@
+{
+  "name": "httpserver",
+  "version": "1.0.0",
+  "description": "Node.js의 Native module만을 활용하 간단한 http server 구성 실습.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BitYoungjae/sampleNodeHttpServer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BitYoungjae/sampleNodeHttpServer/issues"
+  },
+  "homepage": "https://github.com/BitYoungjae/sampleNodeHttpServer#readme",
+  "type": "module"
+}
