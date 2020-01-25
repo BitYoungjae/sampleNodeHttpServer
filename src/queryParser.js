@@ -1,11 +1,13 @@
 const parseQuery = query => {
-  const splitted = query.split('&');
-  const mapped = splitted
-    .filter(q => !!q)
-    .map(q => q.split('='))
-    .map(([key, value]) => (value ? `${key} => ${value}` : key));
+  if (!query || typeof query !== 'string') return '';
 
-  return mapped;
+  return query
+    .split('&')
+    .map(q => {
+      const [key, value] = q.split('=');
+      return value ? `${key} => ${value}` : `${key}`;
+    })
+    .join('\n');
 };
 
 export { parseQuery };

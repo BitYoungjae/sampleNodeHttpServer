@@ -37,7 +37,7 @@ server.on('request', (req, res) => {
       content = 'unknown path';
   }
 
-  content += `\nParsed Query : ${parsedQuery}`;
+  content += `\nParsed Query : \n${parsedQuery}`;
 
   res.end(content);
 });
